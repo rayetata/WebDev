@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random User Generator</title>
+
+  <!-- Bootstrap 4 CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- My Purple Theme CSS -->
   <link rel="stylesheet" href="randomUserApi.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Random User Generator</h2>
+  <div class="container mt-4">
+    <h2 class="text-center mb-4">Random User Generator</h2>
 
-    <input type="number" id="userCount" placeholder="Enter number of users" min="1" max="50">
-    <button id="generateBtn">Generate Users</button>
+    <div class="form-inline justify-content-center mb-3">
+      <input type="number" id="userCount" class="form-control mr-2"
+             placeholder="Enter number of users (1-1000)" min="1" max="1000">
+      <button id="generateBtn" class="btn btn-primary">Generate Users</button>
+    </div>
 
-    <table id="userTable">
-      <thead>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
         <tr>
           <th>
-            <select id="nameSelect">
+            <select id="nameSelect" class="form-control">
               <option value="first">First Name</option>
               <option value="last">Last Name</option>
             </select>
@@ -31,17 +39,43 @@
     </table>
   </div>
 
-  <!-- Modal -->
-  <div id="userModal" class="modal">
-    <div class="modal-content">
-      <span id="closeModal">&times;</span>
-      <img id="modalPicture" src="" alt="User Picture">
-      <h3 id="modalName"></h3>
-      <p id="modalAddress"></p>
-      <p id="modalEmail"></p>
+  <!-- Bootstrap Modal -->
+  <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">User Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span>&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body text-center">
+          <img id="modalPicture" src="" alt="User Picture" class="rounded-circle mb-3" width="120" height="120">
+          <h4 id="modalName"></h4>
+          <p id="modalAddress"></p>
+          <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+          <p><strong>Phone:</strong> <span id="modalPhone"></span></p>
+          <p><strong>Cell:</strong> <span id="modalCell"></span></p>
+          <p><strong>Date of Birth:</strong> <span id="modalDob"></span></p>
+          <p><strong>Gender:</strong> <span id="modalGender"></span></p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="deleteUserBtn" class="btn btn-danger">🗑️ Delete</button>
+          <button type="button" id="editUserBtn" class="btn btn-warning">✏️ Modify</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
     </div>
   </div>
 
   <script src="randomUserApi.js"></script>
+  <!-- Bootstrap JS (jQuery + Popper + Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
